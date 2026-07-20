@@ -21,7 +21,7 @@ CREATE INDEX idx_active_orders ON orders (created_at) WHERE status = 'active';
 CREATE INDEX idx_orders_covering ON orders (user_id) INCLUDE (status, total);
 ```
 
-Обычный индекс в PostgreSQL хранит только индексируемые колонки + `ctid` (указатель на строку в heap) — чтобы получить остальные поля (`SELECT status, total`), нужен дополнительный переход в heap ("bookmark lookup"). `INCLUDE` кладёт дополнительные колонки прямо в лист индекса — планировщик получает всё нужное из самого индекса, это называется **Index Only Scan**. Условие для реального Index Only Scan — ещё и то, чтобы страница heap была отмечена как "all visible" в visibility map (иначе всё равно придётся сходить проверить видимость строки по MVCC, см. [05-mvcc-vacuum.md](./05-mvcc-vacuum.md)) — частая причина, почему `EXPLAIN` показывает Index Only Scan, но с "Heap Fetches" не нулевыми.
+Обычный индекс в PostgreSQL хранит только индексируемые колонки + `ctid` (указатель на строку в heap) — чтобы получить остальные поля (`SELECT status, total`), нужен дополнительный переход в heap ("bookmark lookup"). `INCLUDE` кладёт дополнительные колонки прямо в лист индекса — планировщик получает всё нужное из самого индекса, это называется **Index Only Scan**. Условие для реального Index Only Scan — ещё и то, чтобы страница heap была отмечена как "all visible" в visibility map (иначе всё равно придётся сходить проверить видимость строки по MVCC, см. [MVCC, VACUUM, bloat](./05-mvcc-vacuum.md)) — частая причина, почему `EXPLAIN` показывает Index Only Scan, но с "Heap Fetches" не нулевыми.
 
 Отличие `INCLUDE`-колонок от обычных ключевых: они не участвуют в сортировке/поиске дерева, только "довозятся" в листе — то есть `INCLUDE (status)` бесполезен для `WHERE status = ?`, только для `SELECT status`.
 

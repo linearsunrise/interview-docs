@@ -11,20 +11,20 @@ title: "OWASP Top 10 применительно к Node"
 
 | # | Категория | Типичное проявление в Node/Nest | Где разобрано подробнее |
 |---|---|---|---|
-| A01 | Broken Access Control | IDOR — роль проверена guard'ом, владение ресурсом — нет | [05-rbac-abac.md](./05-rbac-abac.md) |
-| A02 | Cryptographic Failures | пароли на SHA-256 вместо bcrypt/argon2; секреты в git; HTTP вместо HTTPS для чувствительных данных | [13-password-hashing.md](./13-password-hashing.md), [14-secrets-management.md](./14-secrets-management.md) |
-| A03 | Injection | конкатенация строк в SQL-запрос через TypeORM `query()`; `$where`/операторы MongoDB из `req.body` напрямую в запрос | [07-injections-sql-nosql.md](./07-injections-sql-nosql.md) |
-| A04 | Insecure Design | отсутствие rate limiting на эндпоинте логина/сброса пароля — архитектурный пробел, не баг конкретной строчки кода | [12-rate-limiting.md](./12-rate-limiting.md) |
-| A05 | Security Misconfiguration | `helmet()` не подключён; CORS с `origin: '*'` вместе с `credentials: true` (что браузеры вообще запрещают, но настройка сама по себе — красный флаг); подробные stack trace в проде | [14-secrets-management.md](./14-secrets-management.md) |
+| A01 | Broken Access Control | IDOR — роль проверена guard'ом, владение ресурсом — нет | [RBAC vs ABAC, реализация в Nest (guards + CASL)](./05-rbac-abac.md) |
+| A02 | Cryptographic Failures | пароли на SHA-256 вместо bcrypt/argon2; секреты в git; HTTP вместо HTTPS для чувствительных данных | [Пароли: bcrypt/argon2, cost factor, соль](./13-password-hashing.md), [Секреты: env vs vault, ротация; helmet, валидация](./14-secrets-management.md) |
+| A03 | Injection | конкатенация строк в SQL-запрос через TypeORM `query()`; `$where`/операторы MongoDB из `req.body` напрямую в запрос | [SQL/NoSQL инъекции](./07-injections-sql-nosql.md) |
+| A04 | Insecure Design | отсутствие rate limiting на эндпоинте логина/сброса пароля — архитектурный пробел, не баг конкретной строчки кода | [Rate limiting: алгоритмы, распределённый на Redis](./12-rate-limiting.md) |
+| A05 | Security Misconfiguration | `helmet()` не подключён; CORS с `origin: '*'` вместе с `credentials: true` (что браузеры вообще запрещают, но настройка сама по себе — красный флаг); подробные stack trace в проде | [Секреты: env vs vault, ротация; helmet, валидация](./14-secrets-management.md) |
 | A06 | Vulnerable and Outdated Components | устаревшие зависимости с известными CVE; `npm audit`/Snyk не в CI | — |
-| A07 | Identification and Authentication Failures | JWT без проверки `exp`/`alg`; отсутствие rate limiting на попытках логина (брутфорс); слабая политика паролей | [01-jwt.md](./01-jwt.md), [02-access-refresh-tokens.md](./02-access-refresh-tokens.md) |
+| A07 | Identification and Authentication Failures | JWT без проверки `exp`/`alg`; отсутствие rate limiting на попытках логина (брутфорс); слабая политика паролей | [JWT: структура, HS256 vs RS256, отзыв](./01-jwt.md), [Access + refresh: ротация, reuse detection](./02-access-refresh-tokens.md) |
 | A08 | Software and Data Integrity Failures | `npm install` из непроверенного реестра/без lock-файла; десериализация недоверенных данных без валидации; отсутствие проверки подписи в CI/CD пайплайне | — |
 | A09 | Security Logging and Monitoring Failures | логи не содержат достаточно контекста для расследования инцидента (кто, когда, какой ресурс); чувствительные данные (пароли, токены) **попадают** в логи по ошибке | — |
-| A10 | Server-Side Request Forgery (SSRF) | сервис фетчит URL, присланный пользователем (превью ссылок, вебхуки), без валидации против внутренней сети/метаданных облака | [11-ssrf.md](./11-ssrf.md) |
+| A10 | Server-Side Request Forgery (SSRF) | сервис фетчит URL, присланный пользователем (превью ссылок, вебхуки), без валидации против внутренней сети/метаданных облака | [SSRF: сценарии, защита](./11-ssrf.md) |
 
 ## Почему именно A01 (Broken Access Control) — самая частая категория
 
-По статистике OWASP (доля приложений с найденной уязвимостью этой категории при тестировании) — Broken Access Control устойчиво на первом месте, и это логично для типичного backend на Node/Nest: авторизация — не встроенный в фреймворк примитив (в отличие, например, от параметризации SQL-запросов, которая "просто работает", если пользоваться ORM правильно) — она **всегда** пишется руками, специфично для каждой бизнес-сущности ("этот пользователь может редактировать этот конкретный документ?"). Guard, проверяющий только роль (см. [05-rbac-abac.md](./05-rbac-abac.md)), — самая частая недоработка именно потому, что "технически заработало" (401/403 отрабатывают для явно неавторизованных) создаёт ложное чувство защищённости, маскируя отсутствие resource-level проверки.
+По статистике OWASP (доля приложений с найденной уязвимостью этой категории при тестировании) — Broken Access Control устойчиво на первом месте, и это логично для типичного backend на Node/Nest: авторизация — не встроенный в фреймворк примитив (в отличие, например, от параметризации SQL-запросов, которая "просто работает", если пользоваться ORM правильно) — она **всегда** пишется руками, специфично для каждой бизнес-сущности ("этот пользователь может редактировать этот конкретный документ?"). Guard, проверяющий только роль (см. [RBAC vs ABAC, реализация в Nest (guards + CASL)](./05-rbac-abac.md)), — самая частая недоработка именно потому, что "технически заработало" (401/403 отрабатывают для явно неавторизованных) создаёт ложное чувство защищённости, маскируя отсутствие resource-level проверки.
 
 ## A06 — специфика Node-экосистемы
 

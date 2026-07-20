@@ -70,7 +70,7 @@ const config = parseConfig(input);
 if (isConfig(config)) config.timeout; // ok, после guard'а
 ```
 
-`JSON.parse` в стандартных тайпингах возвращает `any` — сознательный компромисс совместимости; в новом коде эту границу принято перекрывать явной обёрткой, возвращающей `unknown`, и дальше валидировать через type guard/схему (см. [11-ts-type-guards-unions.md](./11-ts-type-guards-unions.md)).
+`JSON.parse` в стандартных тайпингах возвращает `any` — сознательный компромисс совместимости; в новом коде эту границу принято перекрывать явной обёрткой, возвращающей `unknown`, и дальше валидировать через type guard/схему (см. [TS: type guards, discriminated unions, satisfies](./11-ts-type-guards-unions.md)).
 
 ## Что спрашивают на собеседовании
 
