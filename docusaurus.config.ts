@@ -91,7 +91,7 @@ const config: Config = {
           items: [
             {
               label: 'Github page',
-              href: 'https://linearsunrise.github.io/interview-docs/',
+              href: 'https://linearsunrise.github.io',
             },
             {
               label: 'Github',

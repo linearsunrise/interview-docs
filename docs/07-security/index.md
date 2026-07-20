@@ -5,6 +5,24 @@ title: Безопасность
 
 # Безопасность
 
+## Подтемы
+
+1. [JWT: структура, HS256 vs RS256, отзыв](./01-jwt.md) — почему не зашифрован, `alg: none`, где хранить на клиенте
+2. [Access + refresh: ротация, reuse detection](./02-access-refresh-tokens.md) — одноразовый refresh, инвалидация всей семьи при краже
+3. [Сессии vs JWT](./03-sessions-vs-jwt.md) — trade-offs, гибридный подход в проде
+4. [OAuth2 flows: authorization code + PKCE, client credentials; OIDC](./04-oauth2-oidc.md) — зачем PKCE, id_token vs access_token
+5. [RBAC vs ABAC, реализация в Nest](./05-rbac-abac.md) — guards + метаданные, CASL, почему роль не защищает от IDOR
+6. [OWASP Top 10 применительно к Node](./06-owasp-top10-node.md) — карта категорий с конкретными примерами
+7. [SQL/NoSQL инъекции](./07-injections-sql-nosql.md) — параметризация, `$ne`/операторы MongoDB из тела запроса
+8. [XSS в контексте API, CSP](./08-xss-csp.md) — reflected vs stored, роль backend в защите
+9. [CSRF: когда актуален и когда нет](./09-csrf.md) — cookie vs Bearer, SameSite, CSRF-токен
+10. [CORS: что реально делает](./10-cors.md) — preflight, credentials, почему это не защита сервера
+11. [SSRF: сценарии, защита](./11-ssrf.md) — метаданные облака, DNS rebinding, редиректы
+12. [Rate limiting: алгоритмы, Redis](./12-rate-limiting.md) — граничная проблема fixed window, token bucket, атомарность
+13. [Пароли: bcrypt/argon2, cost factor](./13-password-hashing.md) — почему SHA-256 с солью недостаточно, memory-hard
+14. [Секреты: env vs vault, helmet, валидация](./14-secrets-management.md) — ротация без передеплоя, whitelist в ValidationPipe
+15. [Prototype pollution, ReDoS](./15-prototype-pollution-redos.md) — специфика JS/Node, `__proto__`, catastrophic backtracking
+
 ## Чеклист знаний
 
 - [ ] JWT: структура, подпись (HS256 vs RS256), где хранить на клиенте, почему нельзя «отозвать»
