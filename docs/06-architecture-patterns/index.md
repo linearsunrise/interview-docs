@@ -7,6 +7,24 @@ title: Архитектура и паттерны
 
 Самый важный блок для senior: здесь проверяют мышление, а не память.
 
+## Подтемы
+
+1. [SOLID с примерами из бэкенда](./01-solid.md) — не фигуры, а сервисы заказов/оплаты/уведомлений
+2. [Слоистая архитектура: controller → service → repository](./02-layered-architecture.md) — направление зависимостей, анемичная модель
+3. [Clean/Hexagonal: ports & adapters](./03-clean-hexagonal.md) — независимость домена от фреймворка, цена в Nest
+4. [DDD: entity, value object, агрегат, bounded context](./04-ddd.md) — инварианты, почему один агрегат — одна транзакция
+5. [CQRS](./05-cqrs.md) — когда оправдано, уровни разделения, eventual consistency в UI
+6. [Event Sourcing](./06-event-sourcing.md) — проекции, снапшоты, почему это редко нужно
+7. [Монолит vs модульный монолит vs микросервисы](./07-monolith-vs-microservices.md) — критерии перехода, Strangler Fig
+8. [Межсервисная коммуникация: sync vs async](./08-sync-vs-async-communication.md) — temporal coupling, оркестрация vs хореография
+9. [Saga: choreography vs orchestration, компенсации](./09-saga.md) — заказ → оплата → склад → доставка
+10. [Transactional Outbox + relay/CDC](./10-transactional-outbox.md) — dual write problem, поллер vs Debezium
+11. [Circuit Breaker, retry + backoff + jitter](./11-circuit-breaker-retry.md) — retry storm, timeout budget
+12. [API Gateway, BFF, service discovery](./12-api-gateway-bff.md) — client-side vs server-side discovery
+13. [Kafka vs RabbitMQ](./13-kafka-vs-rabbitmq.md) — log vs queue, ordering, consumer groups
+14. [Delivery guarantees, идемпотентные консьюмеры](./14-delivery-guarantees-idempotent-consumers.md) — at-least-once, дедупликация
+15. [Distributed transactions: почему 2PC избегают](./15-distributed-transactions-2pc.md) — блокирующая неопределённость, CAP
+
 ## Чеклист знаний
 
 - [ ] SOLID с примерами из бэкенда (не «квадрат-прямоугольник», а реальные сервисы)
