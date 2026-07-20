@@ -24,6 +24,7 @@ title: NestJS
 15. [Тестирование](./15-testing.md) — TestingModule, override*, e2e с supertest
 16. [Fastify vs Express](./16-fastify-vs-express.md) — адаптеры, когда выигрыш реален
 17. [Структура большого проекта](./17-project-structure.md) — фичёвые модули, границы, монорепа
+18. [Инструменты разработчика](./18-devtools.md) — CLI, NestJS Devtools, REPL, `NEST_DEBUG`, дебаг в Docker
 
 ## Чеклист знаний
 
