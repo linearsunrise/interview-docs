@@ -7,7 +7,7 @@ title: Кастомные декораторы
 
 > **TL;DR:** Три инструмента: `createParamDecorator` (достать что-то из запроса в параметр хендлера), `SetMetadata`/`Reflector.createDecorator` (повесить метаданные для guards/interceptors), `applyDecorators` (склеить несколько декораторов в один).
 
-## createParamDecorator
+## `createParamDecorator`
 
 ```ts
 export const CurrentUser = createParamDecorator(

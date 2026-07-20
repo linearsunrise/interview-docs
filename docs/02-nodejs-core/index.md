@@ -5,6 +5,21 @@ title: Node.js Core
 
 # Node.js Core
 
+## Подтемы
+
+1. [Архитектура: V8 + libuv](./01-architecture.md) — thread pool vs OS async, `UV_THREADPOOL_SIZE`, что блокирует поток
+2. [Фазы event loop](./02-event-loop-phases.md) — timers/poll/check, `setImmediate` vs `setTimeout`, микротаски и `nextTick`
+3. [Streams и backpressure](./03-streams.md) — 4 типа, `highWaterMark`, `pipeline` vs `pipe`, transform
+4. [Buffer и бинарные данные](./04-buffer.md) — `alloc` vs `allocUnsafe`, кодировки, бинарные протоколы
+5. [worker_threads / child_process / cluster](./05-workers-cluster.md) — когда что, память и коммуникация, k8s
+6. [CommonJS vs ESM](./06-cjs-esm.md) — резолв, live bindings, interop, `require(esm)` в Node 22
+7. [Память и GC в V8](./07-memory-gc.md) — поколения, Scavenger vs Mark-Sweep, `--max-old-space-size`
+8. [Поиск утечек памяти](./08-memory-leaks.md) — heap snapshots, retainers, clinic.js, типовые причины
+9. [Обработка ошибок процесса](./09-error-handling.md) — `uncaughtException`, `unhandledRejection`, почему domains deprecated
+10. [Graceful shutdown](./10-graceful-shutdown.md) — порядок закрытия, k8s-гонка с endpoints, таймауты
+11. [AsyncLocalStorage](./11-async-local-storage.md) — request-id в логах, альтернатива REQUEST scope
+12. [HTTP изнутри](./12-http-internals.md) — keep-alive, агенты, таймауты, 502 за балансировщиком
+
 ## Чеклист знаний
 
 - [ ] Архитектура: V8 + libuv, что уходит в thread pool (fs, dns, crypto, zlib), а что в OS async (сеть)
