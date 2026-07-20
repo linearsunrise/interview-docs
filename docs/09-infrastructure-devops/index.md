@@ -5,6 +5,23 @@ title: Инфраструктура и Observability
 
 # Инфраструктура, DevOps, Observability
 
+## Подтемы
+
+1. [Docker: слои и кеш, multi-stage build](./01-docker-multistage.md) — порядок COPY, `.dockerignore`, non-root user
+2. [Образ: alpine/distroless, размер и безопасность](./02-docker-image-size-security.md) — `npm ci --omit=dev`, компромиссы базовых образов
+3. [Сигналы в контейнере: PID 1, tini](./03-container-signals-pid1.md) — почему `npm start` глотает SIGTERM
+4. [Kubernetes-базис](./04-kubernetes-basics.md) — pod, deployment, service, ingress, configmap/secret, HPA
+5. [Probes: liveness vs readiness vs startup](./05-probes-liveness-readiness.md) — каскадные рестарты при БД в liveness
+6. [Requests/limits, OOMKilled](./06-requests-limits-oomkilled.md) — throttling vs SIGKILL, `--max-old-space-size`
+7. [Деплой: rolling, blue-green, canary; feature flags](./07-deployment-strategies.md) — trade-offs стратегий
+8. [CI/CD: стадии, кеширование зависимостей](./08-cicd-pipeline.md) — fail fast, порядок по стоимости
+9. [Логи: structured JSON, correlation id](./09-structured-logging.md) — pino, AsyncLocalStorage, что нельзя логировать
+10. [Метрики: Prometheus, RED/USE](./10-metrics-prometheus.md) — pull-модель, гистограммы вместо среднего
+11. [Трейсинг: OpenTelemetry, propagation](./11-distributed-tracing-otel.md) — traceparent, распространение через очереди
+12. [Алертинг: SLO burn rate, error budget](./12-alerting-slo-error-budget.md) — симптомы vs причины, многоуровневые окна
+13. [12-factor app](./13-twelve-factor-app.md) — своими словами, с осознанными отступлениями
+14. [Миграции БД в деплое: expand-contract](./14-db-migrations-deploy.md) — совместимость версий при rolling update
+
 ## Чеклист знаний
 
 - [ ] Docker: слои и кеш, multi-stage build для Node (deps → build → runtime), .dockerignore, non-root user

@@ -75,5 +75,5 @@ config2.timeout; // 5000 — литеральный тип сохранён, н�
 ## Ссылки
 
 - [TS Handbook — Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html)
-- [TS Handbook — Discriminated Unions (Narrowing raздел)](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions)
+- [TS Handbook — Discriminated Unions (раздел Narrowing)](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions)
 - [TS 4.9 Release Notes — `satisfies`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html#the-satisfies-operator)
