@@ -5,7 +5,7 @@ title: "TS: декораторы и reflect-metadata"
 
 # Декораторы и `reflect-metadata`
 
-> **TL;DR:** В экосистеме одновременно живут два поколения декораторов: **legacy** (`experimentalDecorators`, старый TC39-черновик, на нём стоят NestJS и Angular) и **standard** (TS 5.0+, финальный TC39 stage-3 proposal, другая сигнатура, никакой встроенной метадаты). Nest использует legacy-декораторы вместе с `emitDecoratorMetadata` и библиотекой `reflect-metadata`, чтобы на рантайме доставать типы параметров конструктора — это и есть фундамент DI (см. [03-nestjs/01-di-and-providers.md](../03-nestjs/01-di-and-providers.md)).
+> **TL;DR:** В экосистеме одновременно живут два поколения декораторов: **legacy** (`experimentalDecorators`, старый TC39-черновик, на нём стоят NestJS и Angular) и **standard** (TS 5.0+, финальный TC39 stage-3 proposal, другая сигнатура, никакой встроенной метадаты). Nest использует legacy-декораторы вместе с `emitDecoratorMetadata` и библиотекой `reflect-metadata`, чтобы на рантайме доставать типы параметров конструктора — это и есть фундамент DI (см. [DI-контейнер и провайдеры](../03-nestjs/01-di-and-providers.md)).
 
 ## Два несовместимых мира
 
@@ -68,7 +68,7 @@ class AdminController {
 Reflect.getMetadata('roles', AdminController); // ['admin'] — так Nest читает @Roles() через Reflector
 ```
 
-Это ровно механизм, на котором в Nest построены `@Roles()` + `Reflector.get()` в guard'ах (см. [03-nestjs/06-guards.md](../03-nestjs/06-guards.md)) и кастомные декораторы параметров (см. [03-nestjs/10-custom-decorators.md](../03-nestjs/10-custom-decorators.md)).
+Это ровно механизм, на котором в Nest построены `@Roles()` + `Reflector.get()` в guard'ах (см. [Guards](../03-nestjs/06-guards.md)) и кастомные декораторы параметров (см. [Кастомные декораторы](../03-nestjs/10-custom-decorators.md)).
 
 ## Порядок выполнения при нескольких декораторах
 

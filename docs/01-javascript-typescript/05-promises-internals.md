@@ -40,7 +40,7 @@ Promise.resolve({ then(resolve) { resolve(42); } })
 
 ## unhandled rejection — как это отслеживается
 
-Движок помечает промис "unhandled", если к моменту завершения текущего чекпоинта микротасков к нему не был привязан rejection-обработчик. Если обработчик добавить позже (но всё ещё в том же тике) — событие может не сработать; если после — сработает `unhandledRejection` (Node) / `unhandledrejection` (браузер). Что делать с ним в Node и почему нельзя просто проигнорировать — в [02-nodejs-core/09-error-handling.md](../02-nodejs-core/09-error-handling.md).
+Движок помечает промис "unhandled", если к моменту завершения текущего чекпоинта микротасков к нему не был привязан rejection-обработчик. Если обработчик добавить позже (но всё ещё в том же тике) — событие может не сработать; если после — сработает `unhandledRejection` (Node) / `unhandledrejection` (браузер). Что делать с ним в Node и почему нельзя просто проигнорировать — в [Обработка ошибок процесса](../02-nodejs-core/09-error-handling.md).
 
 ```js
 async function risky() { throw new Error('boom'); }

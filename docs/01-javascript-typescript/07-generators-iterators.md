@@ -77,7 +77,7 @@ for await (const item of paginate(fetchPage)) {
 }
 ```
 
-Это ровно тот протокол, на котором в Node с 10-й версии построены `Readable`-стримы — их можно напрямую обходить через `for await...of` без событий `data`/`end` (см. [02-nodejs-core/03-streams.md](../02-nodejs-core/03-streams.md)).
+Это ровно тот протокол, на котором в Node с 10-й версии построены `Readable`-стримы — их можно напрямую обходить через `for await...of` без событий `data`/`end` (см. [Streams и backpressure](../02-nodejs-core/03-streams.md)).
 
 ## Что спрашивают на собеседовании
 

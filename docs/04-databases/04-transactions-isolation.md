@@ -54,7 +54,7 @@ SELECT balance FROM accounts WHERE id = 1; -- обе читают 100
 -- B: UPDATE accounts SET balance = 100 - 20 WHERE id = 1; COMMIT; -- 80, "съело" списание A
 ```
 
-На READ COMMITTED (дефолт в Postgres) это реально происходит, потому что каждый `UPDATE` работает со своим свежепрочитанным значением, а не с тем, что видела транзакция изначально. Три рабочих решения — подробнее в [07-locking.md](./07-locking.md):
+На READ COMMITTED (дефолт в Postgres) это реально происходит, потому что каждый `UPDATE` работает со своим свежепрочитанным значением, а не с тем, что видела транзакция изначально. Три рабочих решения — подробнее в [Блокировки: row-level, FOR UPDATE, advisory, optimistic vs pessimistic](./07-locking.md):
 1. `SELECT ... FOR UPDATE` — пессимистичная блокировка строки на время транзакции.
 2. Optimistic locking через колонку `version` — `UPDATE ... SET balance = ?, version = version + 1 WHERE id = ? AND version = ?`, 0 затронутых строк = конфликт, повторить.
 3. Атомарный `UPDATE accounts SET balance = balance - 30 WHERE id = 1` — база сама читает-и-пишет в одной операции под row-lock, гонки в принципе нет.
