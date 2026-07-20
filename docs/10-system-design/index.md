@@ -5,6 +5,32 @@ title: System Design
 
 # System Design
 
+## Подтемы
+
+### Базовые концепции
+
+1. [Фреймворк ответа и требования](./01-framework-and-requirements.md) — 5 фаз, функциональные/нефункциональные требования
+2. [Back-of-envelope estimation](./02-back-of-envelope-estimation.md) — DAU→RPS, объём данных, опорные числа
+3. [CAP своими словами; consistency models](./03-cap-consistency-models.md) — strong/eventual/read-your-writes/monotonic reads
+4. [Выбор хранилища под задачу](./04-storage-selection.md) — SQL/KV/документная/колоночная/поисковая/TSDB
+5. [Кеширование и CDN в дизайне](./05-caching-cdn-design.md) — уровни кеша, что кешировать и почему
+6. [Балансировка, шардирование, consistent hashing](./06-load-balancing-sharding-consistent-hashing.md) — virtual nodes
+7. [Очереди и async-обработка как инструмент дизайна](./07-queues-async-design.md) — сглаживание, развязка, fan-out
+8. [Distributed lock, fencing tokens](./08-distributed-locks-fencing.md) — GC-паузы, Redlock, когда лок избыточен
+9. [Уникальные ID: UUID vs Snowflake vs sequence](./09-unique-id-generation.md) — координация vs сортируемость
+10. [Rate limiting в дизайне, fan-out on write vs on read](./10-rate-limiting-fanout-design.md) — celebrity-проблема
+
+### Разобранные кейсы (35-45 мин каждый)
+
+11. [URL shortener](./11-case-url-shortener.md) — генерация ключей, 301 vs 302
+12. [Лента новостей](./12-case-news-feed.md) — гибридный fan-out, курсорная пагинация
+13. [Чат](./13-case-chat.md) — доставка между инстансами, шардирование по chat_id
+14. [Система нотификаций](./14-case-notifications.md) — агрегация, приоритеты каналов
+15. [Платёжная система](./15-case-payments.md) — idempotency, outbox, saga, append-only ledger
+16. [Booking (отели/билеты)](./16-case-booking.md) — условный UPDATE вместо лока, TTL-холды
+17. [Rate limiter как сервис](./17-case-rate-limiter-service.md) — точность vs производительность, fail-open
+18. [Загрузка и раздача файлов](./18-case-file-upload-cdn.md) — presigned URL, multipart upload
+
 ## Чеклист знаний
 
 - [ ] Фреймворк ответа: требования → оценки → high-level дизайн → углубление → узкие места

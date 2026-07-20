@@ -56,7 +56,7 @@ create(@Body(new ZodValidationPipe(createCatSchema)) dto: CreateCatDto) {}
 1. **Что делает `transform: true`?** — без него в хендлер приходит plain object (декораторы отвалидировали, но `instanceof Dto === false`), с ним — настоящий инстанс + конверсия типов из query/params.
 2. **Чем опасен ValidationPipe без `whitelist`?** — mass assignment: лишние поля проходят в сервис/ORM.
 3. **Порядок выполнения pipes?** — глобальные → контроллера → метода → параметра; pipe параметра получает результат предыдущих.
-4. **Как отвалидировать query-параметры?** — тот же DTO + `@Query()`, primитивы конвертирует `enableImplicitConversion` или `@Type(() => Number)`.
+4. **Как отвалидировать query-параметры?** — тот же DTO + `@Query()`, примитивы конвертирует `enableImplicitConversion` или `@Type(() => Number)`.
 5. **class-validator vs zod?** — декораторы vs схемы; zod даёт вывод типов из схемы (single source of truth) и работает без `emitDecoratorMetadata`.
 
 ## Ссылки
