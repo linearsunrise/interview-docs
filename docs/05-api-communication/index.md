@@ -5,6 +5,21 @@ title: API и коммуникации
 
 # API и коммуникации
 
+## Подтемы
+
+1. [REST: методы, идемпотентность, коды ответов](./01-rest-semantics.md) — семантика PUT/PATCH/POST, 409 vs 422, 401 vs 403
+2. [Idempotency keys для POST](./02-idempotency-keys.md) — схема на БД, конкурентные запросы с одним ключом, TTL
+3. [Версионирование API](./03-api-versioning.md) — URI vs header, expand-contract, что считается breaking change
+4. [Пагинация, фильтрация, сортировка — дизайн контрактов](./04-pagination-filtering-contracts.md) — непрозрачный курсор, whitelist полей сортировки, лимиты
+5. [HTTP: keep-alive, кеширующие заголовки, сжатие](./05-http-caching-keepalive.md) — Cache-Control, ETag/304, gzip/brotli
+6. [HTTP/2, HTTP/3](./06-http2-http3.md) — мультиплексирование, HOL blocking на TCP, QUIC
+7. [GraphQL](./07-graphql.md) — schema-first vs code-first, DataLoader и N+1, complexity/depth limits
+8. [WebSockets](./08-websockets.md) — handshake, sticky sessions vs Redis adapter, heartbeat
+9. [SSE vs WebSocket vs long polling](./09-sse-vs-websocket-vs-polling.md) — критерии выбора по направлению потока
+10. [gRPC](./10-grpc.md) — protobuf, 4 типа стриминга, deadlines, когда вместо REST
+11. [Webhooks](./11-webhooks.md) — HMAC-подпись, retries провайдера, идемпотентность на приёмнике
+12. [OpenAPI/Swagger в Nest, contract-first](./12-openapi-swagger.md) — code-first из тех же DTO, генерация клиентов
+
 ## Чеклист знаний
 
 - [ ] REST: семантика методов, идемпотентность, коды ответов (когда 409, 422, 429)
