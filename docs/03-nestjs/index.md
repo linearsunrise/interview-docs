@@ -5,6 +5,26 @@ title: NestJS
 
 # NestJS
 
+## Подтемы
+
+1. [DI-контейнер и провайдеры](./01-di-and-providers.md) — токены, `useClass/useValue/useFactory/useExisting`, как DI работает под капотом
+2. [Injection scopes](./02-injection-scopes.md) — DEFAULT/REQUEST/TRANSIENT, пузырение, AsyncLocalStorage, durable providers
+3. [Циклические зависимости](./03-circular-dependencies.md) — `forwardRef`, баррел-файлы, как рефакторить
+4. [Request lifecycle](./04-request-lifecycle.md) — полный порядок пайплайна, вопрос №1 на собесах
+5. [Middleware](./05-middleware.md) — когда он, а не guard; raw body, платформенная специфика
+6. [Guards](./06-guards.md) — ExecutionContext, Reflector, RolesGuard, паттерн `@Public()`
+7. [Pipes и валидация](./07-pipes.md) — ValidationPipe изнутри, whitelist/transform, zod-pipe
+8. [Interceptors и RxJS](./08-interceptors.md) — луковица, map/tap/catchError/timeout, кэш
+9. [Exception filters](./09-exception-filters.md) — единый формат ошибок, BaseExceptionFilter
+10. [Кастомные декораторы](./10-custom-decorators.md) — createParamDecorator, applyDecorators, метаданные
+11. [Dynamic modules](./11-dynamic-modules.md) — register/forRoot/forFeature, forRootAsync, ConfigurableModuleBuilder
+12. [Конфигурация](./12-configuration.md) — валидация env, registerAs, типизированный конфиг
+13. [Lifecycle hooks](./13-lifecycle-hooks.md) — порядок хуков, graceful shutdown в k8s
+14. [Микросервисы](./14-microservices.md) — MessagePattern vs EventPattern, ClientProxy, hybrid app
+15. [Тестирование](./15-testing.md) — TestingModule, override*, e2e с supertest
+16. [Fastify vs Express](./16-fastify-vs-express.md) — адаптеры, когда выигрыш реален
+17. [Структура большого проекта](./17-project-structure.md) — фичёвые модули, границы, монорепа
+
 ## Чеклист знаний
 
 - [ ] DI-контейнер: providers, tokens, `useClass/useValue/useFactory/useExisting`
