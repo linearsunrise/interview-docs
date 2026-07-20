@@ -5,6 +5,19 @@ title: Производительность и надёжность
 
 # Производительность и надёжность
 
+## Подтемы
+
+1. [Кеширование: cache-aside, write-through, write-behind](./01-caching-patterns.md) — TTL vs явная инвалидация
+2. [Проблемы кеша: stampede, penetration, hot keys](./02-cache-problems.md) — распределённый лок, negative caching, jitter
+3. [Многоуровневый кеш: in-memory (LRU) + Redis](./03-multi-level-caching.md) — pub/sub-инвалидация, версионирование ключей
+4. [Масштабирование и балансировка нагрузки](./04-scaling-load-balancing.md) — stateless, round robin vs least connections, health checks
+5. [Профилирование: CPU flame graph, clinic.js](./05-profiling-cpu-memory.md) — `--prof`, `--cpu-prof`, как читать flame graph
+6. [CPU-bound в Node, event loop lag, worker threads](./06-cpu-bound-event-loop-lag.md) — `monitorEventLoopDelay`, оффлоад тяжёлых вычислений
+7. [Retry budget и таймауты повсюду](./07-retry-budget-timeouts.md) — клиент/сервер/пул БД, timeout budget по цепочке
+8. [Bulkhead, load shedding, graceful degradation](./08-bulkhead-load-shedding-degradation.md) — изоляция ресурсов, когда отдавать 503
+9. [Очереди для сглаживания нагрузки: BullMQ](./09-queues-bullmq.md) — retries, DLQ, конкурентность, batch-постановка
+10. [Нагрузочное тестирование и перцентили](./10-load-testing-percentiles.md) — autocannon/k6, coordinated omission
+
 ## Чеклист знаний
 
 - [ ] Кеширование: cache-aside, write-through, write-behind; TTL vs явная инвалидация
